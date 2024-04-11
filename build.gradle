@@ -17,7 +17,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
     implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
