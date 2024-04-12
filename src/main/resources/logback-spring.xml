@@ -12,6 +12,18 @@
         </encoder>
     </appender>
 
+    <appender name="INFO_DEFAULT_FILE_APPENDER"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>elk-test.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>elk-test.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>172.16.28.221:50000</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
@@ -19,9 +31,10 @@
         </encoder>
     </appender>
 
-    <logger name="me.rockintuna.elktest" level="INFO" additivity="false">
+    <logger name="me.rockintuna.elktest.service" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="LOGSTASH"/>
+<!--        <appender-ref ref="LOGSTASH"/>-->
+        <appender-ref ref="INFO_DEFAULT_FILE_APPENDER"/>
     </logger>
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
